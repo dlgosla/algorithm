@@ -14,7 +14,7 @@ def fibo(n):
         return
 
     for i in range(2, n + 1):
-        dp[i] = dp[i - 2] + dp[i - 1]
+        # dp[i] = dp[i - 2] + dp[i - 1]
         zero_count[i] = zero_count[i - 2] + zero_count[i - 1]
         one_count[i] = one_count[i - 2] + one_count[i - 1]
 

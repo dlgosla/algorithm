@@ -15,7 +15,6 @@ curr_sum = 0
 for i in range(k):
     curr_sum += buckets[i]
 
-# print(curr_sum)
 max_sum = 0
 for i in range(end):
     left = i - k - 1
@@ -25,5 +24,4 @@ for i in range(end):
     if curr_sum > max_sum:
         max_sum = curr_sum
 
-# print()
 print(max_sum)

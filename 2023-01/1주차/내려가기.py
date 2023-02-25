@@ -1,13 +1,12 @@
 n = int(input())
 
 # metrix = [[int(x) for x in input().split()] for i in range(n)]
-metrix = []
-metrix.append(list(map(int, input().split())))
+first_row = list(map(int, input().split()))
 
 max_dp = [[0] * 3 for _ in range(n)]
 min_dp = [[0] * 3 for _ in range(n)]
-max_dp[0] = metrix[0]
-min_dp[0] = metrix[0]
+max_dp[0] = first_row
+min_dp[0] = first_row
 
 for i in range(1, n):
     for j, elem in enumerate(input().split()):

@@ -15,7 +15,7 @@ K -> S가 있으면 발동
 """
 
 from collections import deque
-from curses.ascii import isdigit
+
 
 n = int(input())
 skils = input()
@@ -39,7 +39,7 @@ pre_skils = {
 
 count = 0
 for skil in skils:
-    if isdigit(skil):
+    if skil.isdigit():
         count += 1
 
     # 본기술이면 사전기술이 있는 지 보고 있으면 count증가
