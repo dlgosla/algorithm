@@ -1,3 +1,8 @@
+"""
+치킨집 최대 13개 집 최대 100채
+모든 치킨집 조합에 대해 따져봐도 괜찮 -> 완탐
+"""
+
 from itertools import combinations
 
 n, m = map(int, input().split())
