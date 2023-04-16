@@ -14,7 +14,7 @@ def solution(book_times):
 
         allocated = False
         for i in range(len(rooms)):
-            if rooms[i] < start_time:
+            if rooms[i] <= start_time:
                 rooms[i] = end_time + timedelta(minutes=10)
                 allocated = True
                 break
@@ -22,7 +22,7 @@ def solution(book_times):
         if not allocated:
             rooms.append(end_time + timedelta(minutes=10))
 
-    print(rooms)
+    # print(rooms)
 
     return answer
 
