@@ -1,3 +1,15 @@
+"""
+union find 
+집합을 합칠 때 parent를 통일 시켜주고
+parent가 같으면 같은 집합으로 판단
+"""
+
+import sys
+
+limit_number = 10000
+sys.setrecursionlimit(limit_number)
+
+
 def union(a, b):
     global parents
 
@@ -5,18 +17,19 @@ def union(a, b):
     b_parent = find_parent(b)
 
     if a_parent < b_parent:
-        parents[b] = a_parent
+        parents[b_parent] = a_parent
     else:
-        parents[a] = b_parent
+        parents[a_parent] = b_parent
 
 
 def find_parent(n):
     global parents
 
-    if parents[n] != n:
+    if parents[n] == n:
+        return n
+    else:
         parents[n] = find_parent(parents[n])
-
-    return parents[n]
+        return parents[n]
 
 
 def have_same_parent(a, b):
