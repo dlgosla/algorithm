@@ -1,29 +1,46 @@
-from itertools import combinations
+import heapq
+from collections import defaultdict
+
+n, d = map(int, input().split())
+nodes = set()
+
+nodes.add(d)
+graph = defaultdict(list)
 
 
-def solution(relation):
-    answer = 0
+for i in range(n):
+    start, end, weight = map(int, input().split())
+    graph[start].append((end, weight))
+    
+    nodes.add(start)
+    nodes.add(end)
 
-    row_len = len(relation)
-    col_len = len(relation[0])
+nodes = list(nodes)
+nodes.sort()
+privious = 0 
 
-    combs = [[] for _ in range(col_len + 1)]
-    for i in range(row_len):
-        for j in range(1, col_len + 1):
-            combs[j].append((list(combinations(relation[i], j))))
+for node in nodes:
+    dist = node - privious
+    graph[privious].append((node, dist))
+    privious = node
 
-    print(combs)
+dist = {node: float('inf') for node in nodes}
+dist[0] = 0
 
-    return answer
+hq = []
+heapq.heappush(hq, (dist[0], 0))
+
+while hq:
+    curr_dist, curr_node = heapq.heappop(hq)
+    if (curr_dist > dist[curr_node]):
+        continue
+    else:
+        for (adjacent, weight) in graph[curr_node]:
+            new_dist = curr_dist + weight
+
+            if (new_dist < dist[adjacent]):
+                dist[adjacent] = new_dist
+                heapq.heappush(hq, (new_dist, adjacent))
 
 
-solution(
-    [
-        ["100", "ryan", "music", "2"],
-        ["200", "apeach", "math", "2"],
-        ["300", "tube", "computer", "3"],
-        ["400", "con", "computer", "4"],
-        ["500", "muzi", "music", "3"],
-        ["600", "apeach", "music", "2"],
-    ]
-)
+print(dist[d])
